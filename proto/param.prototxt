@@ -1,0 +1,45 @@
+cam {
+    type : "CameraFisheye";
+    tic : [ 0.99997115, -0.00140853,  0.0074646,   0.00001905,
+            0.0013817,   0.99999257,  0.00359816,  0.00441519,
+            -0.00746962, -0.00358775,  0.99996567,  0.0275323,
+            0.,          0.,          0.,          1.        ];
+    fisheye_param {
+        fx: 172.98992850734132;
+        fy: 172.98303181090185;
+        cx: 163.33639726024606;
+        cy: 134.99537889030861;
+        dist: [-0.027576733308582076, -0.006593578674675004, 0.0008566938165177085, -0.00030899587045247486];
+        width: 346;
+        height: 260;
+    }
+}
+
+np {
+    acc_noise: 0.1;
+    gyr_noise: 0.05;
+    ba_noise: 0.5;
+    bg_noise: 0.5;
+}
+
+tp {
+    type: "TrackerOpticalFlow";
+    of_param {
+        min_feat_num: 100;
+        nms_dist_thre: 5;
+        det_thre: 15; 
+        bd_thre: 0;  
+    }
+}
+
+sp {
+    min_eff_obs_num:  50;
+    max_frm_interval: 10;
+    local_win_size: 13;
+    min_tracking_feat_num: 100;
+}
+
+gravity: -9.80665
+min_eff_obs_num: 100;
+max_frm_interval: 10;
+local_win_size: 13;

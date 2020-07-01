@@ -15,3 +15,12 @@ Initialization success. See pictures/init.png.
 Tracking. See pictures/tracking.png, pictures/tracking2.png.
 
 Blue boxes are trajectories of cameras. Purple points are map points while the green are currently observed points.
+
+
+## Test
+```
+# Dowload datset
+wget http://rpg.ifi.uzh.ch/datasets/uzh-fpv-newer-versions/v2/indoor_forward_3_davis_with_gt.zip
+unzip indoor_forward_3_davis_with_gt.zip
+./Test ../proto/ indoor_forward_3_davis_with_gt/
+```

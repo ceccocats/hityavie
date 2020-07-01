@@ -85,6 +85,16 @@ bool TrackerOpticalFlow::Track(cv::Mat &img, std::vector<Feature> &pts) {
     pts = TrackerUtils::FilterByBd(pts, img.rows, img.cols, param_.bd_thre());
     img_lf_ = img;
     pts_lf_ = pts;
+
+
+    //cv::Mat im = img.clone();
+    //cv::cvtColor(im, im, CV_GRAY2BGR);
+    //for(int i=0; i<pts.size(); i++) {
+    //    cv::circle(im, cv::Point2f(pts[i].pt_ori.x(), pts[i].pt_ori.y()), 2, cv::Scalar(0,0,255));
+    //}
+    //cv::imshow("ciao", im);
+    //cv::waitKey(1);
+
     return pts.size() >= param_.min_feat_num();
 }
 
