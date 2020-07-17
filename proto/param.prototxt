@@ -15,31 +15,35 @@ cam {
     }
 }
 
+# Imu noise parameters
 np {
-    acc_noise: 0.1;
-    gyr_noise: 0.05;
-    ba_noise: 1.1;
-    bg_noise: 0.5;
+    acc_noise: 0.1;   # accelometer noise
+    gyr_noise: 0.05;  # gyroscope noise
+    ba_noise: 1.2;    # accelometer bias noise
+    bg_noise: 0.6;    # gyroscope bias noise
 }
 
+# Optical flow config
 tp {
     type: "TrackerOpticalFlow";
     of_param {
-        min_feat_num: 200;
-        nms_dist_thre: 5;
-        det_thre: 15; 
-        bd_thre: 0;  
+        min_feat_num: 200;    # min features to have in frame
+        nms_dist_thre: 5;     # min px dist beetween features
+        det_thre: 15;         # FAST detection threshold
+        bd_thre: 0;           # remove point at margin of px
     }
 }
 
+# SfM config
 sp {
-    min_eff_obs_num:  150;
-    max_frm_interval: 4;
-    local_win_size: 15;
-    min_tracking_feat_num: 100;
+    min_eff_obs_num:  150;       # min effective obs to trigger a keyframe
+    max_frm_interval: 4;         # min frames interval to trigger a keyframe
+    local_win_size: 15;          # loacal optimization window
+    min_tracking_feat_num: 100;  # under this nuber of feature SfM is considered lost
 }
 
+# Tracker config
 gravity: -9.80665
-min_eff_obs_num: 150;
-max_frm_interval: 4;
-local_win_size: 15;
+min_eff_obs_num: 150;       # min effective obs to trigger a keyframe
+max_frm_interval: 4;        # min frames interval to trigger a keyframe
+local_win_size: 15;         # loacal optimization window
