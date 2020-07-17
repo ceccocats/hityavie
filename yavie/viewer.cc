@@ -130,6 +130,32 @@ void Viewer::DrawCamera() {
             glVertex3f(next_position[0], next_position[1], next_position[2]);
         }
         glEnd();
+/*
+        // GT plot
+        if(all_frms.size() > 0) {
+            //YavieFrame::Ptr frm = all_frms[0];
+            //Eigen::Matrix4d twc = frm->GetPose() * cam_->GetTfic();
+            //Eigen::Isometry3d firstVoTF(twc);
+
+            GtPose firstGT = gtm_->GetGt4Time(all_frms[0]->GetTimestamp());
+            Eigen::Isometry3d firstTF = Eigen::Isometry3d::Identity();
+            firstTF.linear() = firstGT.q.toRotationMatrix();
+            firstTF.translation() = firstGT.p;
+
+            glBegin(GL_LINE_STRIP);
+            GL_COLOR_RED;
+            for (size_t idx = 0; idx < all_frms.size(); ++idx) {
+                YavieFrame::Ptr frm0 = all_frms[idx];
+                GtPose gtp = gtm_->GetGt4Time(frm0->GetTimestamp());
+                Eigen::Isometry3d tf = Eigen::Isometry3d::Identity();
+                tf.linear()      = gtp.q.toRotationMatrix();
+                tf.translation() = gtp.p;
+                tf = firstTF.inverse() * tf;
+                glVertex3f(tf.translation().x(), tf.translation().y(), tf.translation().z());
+            }
+            glEnd();
+        }
+*/
     }
 }
 

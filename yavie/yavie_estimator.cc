@@ -489,6 +489,7 @@ void YavieEstimator::LocalOptimization() {
     for (const auto &frm : inner_frms) {
         std::vector<Feature> feats = frm->GetFeatures();
         Eigen::Matrix<double, 7, 1> &pcf = id_pv_inner[frm->GetId()];
+        int added = 0;
         for (const auto &feat: feats) {
             if (!frm->IsEffeObs(feat.id)) {
                 continue;
@@ -498,8 +499,11 @@ void YavieEstimator::LocalOptimization() {
             Eigen::Vector2d sqrt_info(1, 1);
             ceres::CostFunction *cost_func = new ErrorPrjVie(pt_obs, sqrt_info, k);
             problem.AddResidualBlock(cost_func, loss_function, &pcf[0], &tbc[0], &pt_3d[0]);
+            added++;
         }
-        problem.SetParameterization(&pcf[0], pose_ptr);
+        
+        if(added)
+            problem.SetParameterization(&pcf[0], pose_ptr);
     }
     for (size_t idx = 0; idx < inner_frms.size() - 1; ++idx) {
         YavieFrame::Ptr pf = inner_frms[idx];

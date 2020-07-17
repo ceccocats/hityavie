@@ -18,14 +18,14 @@ cam {
 np {
     acc_noise: 0.1;
     gyr_noise: 0.05;
-    ba_noise: 0.5;
+    ba_noise: 1.1;
     bg_noise: 0.5;
 }
 
 tp {
     type: "TrackerOpticalFlow";
     of_param {
-        min_feat_num: 100;
+        min_feat_num: 200;
         nms_dist_thre: 5;
         det_thre: 15; 
         bd_thre: 0;  
@@ -33,13 +33,13 @@ tp {
 }
 
 sp {
-    min_eff_obs_num:  50;
-    max_frm_interval: 10;
-    local_win_size: 13;
+    min_eff_obs_num:  150;
+    max_frm_interval: 4;
+    local_win_size: 15;
     min_tracking_feat_num: 100;
 }
 
 gravity: -9.80665
-min_eff_obs_num: 100;
-max_frm_interval: 10;
-local_win_size: 13;
+min_eff_obs_num: 150;
+max_frm_interval: 4;
+local_win_size: 15;
